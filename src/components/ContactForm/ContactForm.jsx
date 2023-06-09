@@ -1,11 +1,13 @@
 import { Component } from 'react';
 import css from './ContactForm.module.css'
+import { nanoid } from 'nanoid';
 
 
 export class Form extends Component {
   state = {
     name: '',
     number: '',
+    id:'',
   };
 
   handleInput = inputName => e => {
@@ -15,8 +17,9 @@ export class Form extends Component {
   };
 
   handleSubmit = event => {
+    const {name, number} =this.state
     event.preventDefault();
-    this.props.onSubmit(this.state);
+    this.props.onSubmit({name,number, id: nanoid()});
     this.reset();
   };
 
